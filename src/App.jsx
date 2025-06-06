@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, User, Vote, Home, Award } from 'lucide-react';
+import { Copy, Check, User, Vote, Award } from 'lucide-react';
 
 const MinecraftVotingApp = () => {
     const [username, setUsername] = useState('');
@@ -8,7 +8,6 @@ const MinecraftVotingApp = () => {
     const [currentSite, setCurrentSite] = useState(null);
     const [timeUntilReset, setTimeUntilReset] = useState('');
     const [totalVotes, setTotalVotes] = useState(0);
-    const [lastResetDate, setLastResetDate] = useState('');
 
     // BadWolfMC voting sites
     // More info on this is in the README.md file
@@ -94,15 +93,11 @@ const MinecraftVotingApp = () => {
             const votesData = JSON.parse(savedVotes);
             if (votesData.date === currentDateString) {
                 setVotedSites(votesData.sites);
-                setLastResetDate(currentDateString);
             } else {
                 // New day, reset votes but keep total
                 localStorage.removeItem('minecraft-votes');
                 setVotedSites({});
-                setLastResetDate(currentDateString);
             }
-        } else {
-            setLastResetDate(currentDateString);
         }
     }, []);
 
