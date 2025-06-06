@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Copy, Check, User, Vote, Award } from 'lucide-react';
+import React, {useState, useEffect} from 'react';
+import {Copy, Check, User, Vote, Award} from 'lucide-react';
 
 const MinecraftVotingApp = () => {
     const [username, setUsername] = useState('');
@@ -13,18 +13,18 @@ const MinecraftVotingApp = () => {
     // More info on this is in the README.md file
     // type is either 'link' or 'iframe'
     const votingSites = [
-        { name: 'FindMCServer', url: 'https://link.bwmc.app/findmcweb', id: 'findmc', type: 'link' },
-        { name: 'Planet Minecraft', url: 'https://link.bwmc.app/pmcweb', id: 'planetmc', type: 'link' },
-        { name: 'Top Gaming List', url: 'https://link.bwmc.app/topgweb', id: 'topg', type: 'link' },
-        { name: 'MCLike', url: 'https://link.bwmc.app/likeweb', id: 'mclike', type: 'link' },
-        { name: 'MCList', url: 'https://link.bwmc.app/mclistioweb', id: 'mclistio', type: 'link' },
-        { name: 'Minecraft Buzz', url: 'https://link.bwmc.app/buzzweb', id: 'mcbuzz', type: 'link' },
-        { name: 'Minecraft-MP', url: 'https://link.bwmc.app/mcmpweb', id: 'mcmp', type: 'link' },
-        { name: 'MinecraftServers.org', url: 'https://link.bwmc.app/servorgweb', id: 'mcservers', type: 'link' },
-        { name: 'Minecraft-Server-List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link' },
-        { name: 'Minecraft-Server.net', url: 'https://link.bwmc.app/servnetweb', id: 'mcservernet', type: 'link' },
-        { name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link' },
-        { name: 'Minecraft-Tracker', url: 'https://link.bwmc.app/trackweb', id: 'mctracker', type: 'link' }
+        {name: 'FindMCServer', url: 'https://link.bwmc.app/findmcweb', id: 'findmc', type: 'link'},
+        {name: 'Planet Minecraft', url: 'https://link.bwmc.app/pmcweb', id: 'planetmc', type: 'link'},
+        {name: 'Top Gaming List', url: 'https://link.bwmc.app/topgweb', id: 'topg', type: 'link'},
+        {name: 'MCLike', url: 'https://link.bwmc.app/likeweb', id: 'mclike', type: 'link'},
+        {name: 'MCList', url: 'https://link.bwmc.app/mclistioweb', id: 'mclistio', type: 'link'},
+        {name: 'Minecraft Buzz', url: 'https://link.bwmc.app/buzzweb', id: 'mcbuzz', type: 'link'},
+        {name: 'Minecraft-MP', url: 'https://link.bwmc.app/mcmpweb', id: 'mcmp', type: 'link'},
+        {name: 'MinecraftServers.org', url: 'https://link.bwmc.app/servorgweb', id: 'mcservers', type: 'link'},
+        {name: 'Minecraft-Server-List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link'},
+        {name: 'Minecraft-Server.net', url: 'https://link.bwmc.app/servnetweb', id: 'mcservernet', type: 'link'},
+        {name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link'},
+        {name: 'Minecraft-Tracker', url: 'https://link.bwmc.app/trackweb', id: 'mctracker', type: 'link'}
     ];
 
     // Get current EST date string for reset checking
@@ -127,9 +127,9 @@ const MinecraftVotingApp = () => {
 
         try {
             await navigator.clipboard.writeText(username);
-            setCopiedStates({ username: true });
+            setCopiedStates({username: true});
             setTimeout(() => {
-                setCopiedStates(prev => ({ ...prev, username: false }));
+                setCopiedStates(prev => ({...prev, username: false}));
             }, 2000);
         } catch (err) {
             console.error('Failed to copy username:', err);
@@ -150,7 +150,7 @@ const MinecraftVotingApp = () => {
         event.stopPropagation(); // Prevent opening the site when clicking the checkbox
 
         setVotedSites(prev => {
-            const newState = { ...prev };
+            const newState = {...prev};
             const wasVoted = newState[siteId];
 
             if (wasVoted) {
@@ -186,7 +186,7 @@ const MinecraftVotingApp = () => {
                             className="flex items-center gap-2 hover:bg-white/10 px-3 py-2 rounded-lg transition-colors"
                         >
                             <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
-                                <Vote className="w-5 h-5 text-amber-900" />
+                                <Vote className="w-5 h-5 text-amber-900"/>
                             </div>
                             <span className="text-white font-bold text-xl">BadWolfMC Votes</span>
                         </button>
@@ -201,7 +201,7 @@ const MinecraftVotingApp = () => {
 
                     {/* Center - Username */}
                     <div className="flex items-center gap-3">
-                        <User className="w-4 h-4 text-emerald-300" />
+                        <User className="w-4 h-4 text-emerald-300"/>
                         <input
                             type="text"
                             value={username}
@@ -218,7 +218,7 @@ const MinecraftVotingApp = () => {
                                     : 'bg-gray-600 text-gray-400 cursor-not-allowed'
                             }`}
                         >
-                            {copiedStates.username ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                            {copiedStates.username ? <Check className="w-4 h-4"/> : <Copy className="w-4 h-4"/>}
                             {copiedStates.username ? 'Copied!' : 'Copy'}
                         </button>
                     </div>
@@ -226,13 +226,13 @@ const MinecraftVotingApp = () => {
                     {/* Right side - Progress and Stats */}
                     <div className="flex items-center gap-6">
                         <div className="flex items-center gap-2">
-                            <Award className="w-5 h-5 text-amber-400" />
+                            <Award className="w-5 h-5 text-amber-400"/>
                             <span className="text-white font-semibold">{completedVotes}/12</span>
                         </div>
                         <div className="w-24 bg-white/20 rounded-full h-2">
                             <div
                                 className="h-2 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full transition-all duration-500"
-                                style={{ width: `${progressPercentage}%` }}
+                                style={{width: `${progressPercentage}%`}}
                             ></div>
                         </div>
                         <div className="text-right">
@@ -259,7 +259,7 @@ const MinecraftVotingApp = () => {
                                 {completedVotes === votingSites.length && (
                                     <div className="bg-emerald-500/20 border border-emerald-400/30 rounded-xl p-4 mb-6">
                                         <div className="flex items-center justify-center gap-2 text-emerald-300">
-                                            <Award className="w-6 h-6" />
+                                            <Award className="w-6 h-6"/>
                                             <span className="text-xl font-bold">All votes completed! Your rewards are on the way! 🎉</span>
                                         </div>
                                     </div>
@@ -269,7 +269,8 @@ const MinecraftVotingApp = () => {
                                 <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mb-6">
                                     <div className="text-center">
                                         <p className="text-blue-200 text-sm">
-                                            You will be able to vote again in approximately <span className="font-bold">{timeUntilReset}</span>
+                                            You will be able to vote again in approximately <span
+                                            className="font-bold">{timeUntilReset}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -300,16 +301,17 @@ const MinecraftVotingApp = () => {
                                                             : 'border-white/40 hover:border-white/60'
                                                     }`}
                                                 >
-                                                    {isVoted && <Check className="w-4 h-4 text-white" />}
+                                                    {isVoted && <Check className="w-4 h-4 text-white"/>}
                                                 </button>
                                             </div>
 
                                             <h3 className="text-white font-semibold mb-2 pr-8">{site.name}</h3>
-                                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium ${
-                                                isVoted
-                                                    ? 'bg-emerald-600 text-white'
-                                                    : 'bg-blue-600 text-white'
-                                            }`}>
+                                            <div
+                                                className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium ${
+                                                    isVoted
+                                                        ? 'bg-emerald-600 text-white'
+                                                        : 'bg-blue-600 text-white'
+                                                }`}>
                                                 {isVoted ? 'Voted!' : 'Vote Now'}
                                             </div>
                                         </div>
@@ -330,7 +332,8 @@ const MinecraftVotingApp = () => {
                                 </ol>
                                 <div className="mt-4 p-3 bg-amber-500/20 border border-amber-400/30 rounded-lg">
                                     <p className="text-amber-200 text-sm">
-                                        💰 <strong>Reward Reminder:</strong> Each vote helps BadWolfMC climb the rankings and earns you valuable in-game rewards!
+                                        💰 <strong>Reward Reminder:</strong> Each vote helps BadWolfMC climb the rankings
+                                        and earns you valuable in-game rewards!
                                     </p>
                                 </div>
                             </div>
@@ -348,6 +351,24 @@ const MinecraftVotingApp = () => {
                     </div>
                 )}
             </div>
+            <footer className="text-gray-600 body-font">
+                <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+                    <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                        <span className="ml-3 text-xl">BadWolfMC Voting Tool</span>
+                    </a>
+                    <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+                        © 2025 BadWolfMC Voting Tool — Credit to <a href="https://badwolfmc.com"
+                                                                    className="text-gray-600 ml-1"
+                                                                    target="_blank">BadWolfMC.com</a>
+                    </p>
+                    <p className="flex-auto text-sm text-gray-500 text-right md:justify-end">
+                        This tool is an independent project and is not affiliated with BadWolfMC, Mojang Studios, or
+                        Microsoft. <br/>
+                        Minecraft is a trademark of Mojang Studios and Microsoft. <br/>
+                        We do not collect or track any personal data. All user data is stored locally on your device.
+                    </p>
+                </div>
+            </footer>
         </div>
     );
 };
