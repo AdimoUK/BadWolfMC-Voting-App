@@ -179,7 +179,7 @@ const MinecraftVotingApp = () => {
             {/* Navigation Bar */}
             <nav className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-4">
                 <div
-                    className="@container mx-auto flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-6">
+                    className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-6">
                     {/* Left side - Logo and title */}
                     <div className="flex items-center gap-4">
                         <button
