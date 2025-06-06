@@ -178,7 +178,8 @@ const MinecraftVotingApp = () => {
         <div className="min-h-screen bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 flex flex-col">
             {/* Navigation Bar */}
             <nav className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-4">
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
+                <div
+                    className="@container mx-auto flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-6">
                     {/* Left side - Logo and title */}
                     <div className="flex items-center gap-4">
                         <button
@@ -200,19 +201,21 @@ const MinecraftVotingApp = () => {
                     </div>
 
                     {/* Center - Username */}
-                    <div className="flex items-center gap-3">
-                        <User className="w-4 h-4 text-emerald-300"/>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Your Minecraft username"
-                            className="px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent w-48"
-                        />
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
+                        <div className="flex items-center gap-3">
+                            <User className="w-4 h-4 text-emerald-300"/>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="Your Minecraft username"
+                                className="px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent w-full sm:w-48"
+                            />
+                        </div>
                         <button
                             onClick={copyUsername}
                             disabled={!username}
-                            className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 ${
+                            className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 justify-center ${
                                 username
                                     ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
                                     : 'bg-gray-600 text-gray-400 cursor-not-allowed'
@@ -224,12 +227,12 @@ const MinecraftVotingApp = () => {
                     </div>
 
                     {/* Right side - Progress and Stats */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full md:w-auto">
                         <div className="flex items-center gap-2">
                             <Award className="w-5 h-5 text-amber-400"/>
                             <span className="text-white font-semibold">{completedVotes}/12</span>
                         </div>
-                        <div className="w-24 bg-white/20 rounded-full h-2">
+                        <div className="w-full sm:w-24 bg-white/20 rounded-full h-2">
                             <div
                                 className="h-2 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full transition-all duration-500"
                                 style={{width: `${progressPercentage}%`}}
@@ -251,9 +254,11 @@ const MinecraftVotingApp = () => {
                         <div className="max-w-4xl mx-auto">
                             {/* Welcome Section */}
                             <div className="text-center mb-8">
-                                <h1 className="text-4xl font-bold text-white mb-4">Ready to Earn Your Loyalty Points?</h1>
+                                <h1 className="text-4xl font-bold text-white mb-4">Ready to Earn Your Loyalty
+                                    Points?</h1>
                                 <p className="text-emerald-200 text-lg mb-6">
-                                    Vote for BadWolfMC on all 12 sites to earn valuable in-game rewards obtainable using loyalty points!
+                                    Vote for BadWolfMC on all 12 sites to earn valuable in-game rewards obtainable using
+                                    loyalty points!
                                 </p>
 
                                 {completedVotes === votingSites.length && (
@@ -336,8 +341,10 @@ const MinecraftVotingApp = () => {
                                 </ol>
                                 <div className="mt-4 p-3 bg-red-500/20 border border-red-400/30 rounded-lg">
                                     <p className="text-red-200 text-sm">
-                                        ⚠️ <strong>Caution!</strong> Ensure that you type in your username correctly, otherwise
-                                        you may not receive any loyalty points! This is why we recommend copying and pasting your username instead of typing it in.
+                                        ⚠️ <strong>Caution!</strong> Ensure that you type in your username correctly,
+                                        otherwise
+                                        you may not receive any loyalty points! This is why we recommend copying and
+                                        pasting your username instead of typing it in.
                                     </p>
                                 </div>
                                 <div className="mt-4 p-3 bg-amber-500/20 border border-amber-400/30 rounded-lg">
