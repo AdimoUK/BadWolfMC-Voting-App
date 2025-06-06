@@ -262,23 +262,25 @@ const MinecraftVotingApp = () => {
                                 </p>
 
                                 {completedVotes === votingSites.length && (
-                                    <div className="bg-emerald-500/20 border border-emerald-400/30 rounded-xl p-4 mb-6">
-                                        <div className="flex items-center justify-center gap-2 text-emerald-300">
-                                            <Award className="w-6 h-6"/>
-                                            <span className="text-xl font-bold">All votes completed! Your loyalty points are on the way! 🎉</span>
+                                    <div>
+                                        <div className="bg-emerald-500/20 border border-emerald-400/30 rounded-xl p-4 mb-6">
+                                            <div className="flex items-center justify-center gap-2 text-emerald-300">
+                                                <Award className="w-6 h-6"/>
+                                                <span className="text-xl font-bold">All votes completed! Your loyalty points are on the way! 🎉</span>
+                                            </div>
+                                        </div>
+                                        {/* Vote Reset Countdown */}
+                                        <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mb-6">
+                                            <div className="text-center">
+                                                <p className="text-blue-200 text-sm">
+                                                You will be able to vote again in approximately <span
+                                                className="font-bold">{timeUntilReset}</span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
 
-                                {/* Vote Reset Countdown */}
-                                <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4 mb-6">
-                                    <div className="text-center">
-                                        <p className="text-blue-200 text-sm">
-                                            You will be able to vote again in approximately <span
-                                            className="font-bold">{timeUntilReset}</span>
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
 
                             {/* Voting Sites Grid */}
