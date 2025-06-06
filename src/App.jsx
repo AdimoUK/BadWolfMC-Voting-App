@@ -251,16 +251,16 @@ const MinecraftVotingApp = () => {
                         <div className="max-w-4xl mx-auto">
                             {/* Welcome Section */}
                             <div className="text-center mb-8">
-                                <h1 className="text-4xl font-bold text-white mb-4">Ready to Earn Your Rewards?</h1>
+                                <h1 className="text-4xl font-bold text-white mb-4">Ready to Earn Your Loyalty Points?</h1>
                                 <p className="text-emerald-200 text-lg mb-6">
-                                    Vote for BadWolfMC on all 12 sites to earn valuable in-game rewards!
+                                    Vote for BadWolfMC on all 12 sites to earn valuable in-game rewards obtainable using loyalty points!
                                 </p>
 
                                 {completedVotes === votingSites.length && (
                                     <div className="bg-emerald-500/20 border border-emerald-400/30 rounded-xl p-4 mb-6">
                                         <div className="flex items-center justify-center gap-2 text-emerald-300">
                                             <Award className="w-6 h-6"/>
-                                            <span className="text-xl font-bold">All votes completed! Your rewards are on the way! 🎉</span>
+                                            <span className="text-xl font-bold">All votes completed! Your loyalty points are on the way! 🎉</span>
                                         </div>
                                     </div>
                                 )}
@@ -323,13 +323,23 @@ const MinecraftVotingApp = () => {
                             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mt-8 border border-white/10">
                                 <h3 className="text-lg font-semibold text-white mb-3">How to Vote & Earn Rewards:</h3>
                                 <ol className="text-emerald-200 space-y-2">
-                                    <li>1. Enter your Minecraft username in the top bar and copy it</li>
+                                    <li>1. Enter your Minecraft username in the top bar and click the button to copy
+                                        it
+                                    </li>
                                     <li>2. Click on any voting site to open it in a new tab</li>
-                                    <li>3. Paste your username and complete the captcha</li>
-                                    <li>4. Submit your vote for BadWolfMC</li>
+                                    <li>3. Paste your username and complete the captcha where needed</li>
+                                    <li>4. Submit your vote for BadWolfMC. This will add 1 loyalty point to your
+                                        account
+                                    </li>
                                     <li>5. Return to this tab and check off completed votes</li>
                                     <li>6. Complete all 12 votes daily to maximize your rewards!</li>
                                 </ol>
+                                <div className="mt-4 p-3 bg-red-500/20 border border-red-400/30 rounded-lg">
+                                    <p className="text-red-200 text-sm">
+                                        ⚠️ <strong>Caution!</strong> Ensure that you type in your username correctly, otherwise
+                                        you may not receive any loyalty points! This is why we recommend copying and pasting your username instead of typing it in.
+                                    </p>
+                                </div>
                                 <div className="mt-4 p-3 bg-amber-500/20 border border-amber-400/30 rounded-lg">
                                     <p className="text-amber-200 text-sm">
                                         💰 <strong>Reward Reminder:</strong> Each vote helps BadWolfMC climb the rankings
@@ -351,17 +361,17 @@ const MinecraftVotingApp = () => {
                     </div>
                 )}
             </div>
-            <footer className="text-gray-600 body-font">
+            <footer className="body-font">
                 <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-                    <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                    <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-400">
                         <span className="ml-3 text-xl">BadWolfMC Voting Tool</span>
                     </a>
-                    <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+                    <p className="text-sm text-gray-200 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
                         © 2025 BadWolfMC Voting Tool — Credit to <a href="https://badwolfmc.com"
-                                                                    className="text-gray-600 ml-1"
+                                                                    className="text-gray-400 ml-1"
                                                                     target="_blank">BadWolfMC.com</a>
                     </p>
-                    <p className="flex-auto text-sm text-gray-500 text-right md:justify-end">
+                    <p className="flex-auto text-sm text-gray-200 text-right md:justify-end">
                         This tool is an independent project and is not affiliated with BadWolfMC, Mojang Studios, or
                         Microsoft. <br/>
                         Minecraft is a trademark of Mojang Studios and Microsoft. <br/>
