@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, User, Vote, Award } from 'lucide-react';
+import { Copy, Check, User, Vote, Home, Award } from 'lucide-react';
 
 const MinecraftVotingApp = () => {
     const [username, setUsername] = useState('');
@@ -14,18 +14,18 @@ const MinecraftVotingApp = () => {
     // More info on this is in the README.md file
     // type is either 'link' or 'iframe'
     const votingSites = [
-        { name: 'FindMCServer', url: 'https://findmcserver.com/server/badwolfmc', id: 'findmc', type: 'iframe' },
+        { name: 'FindMCServer', url: 'https://findmcserver.com/server/badwolfmc', id: 'findmc', type: 'link' },
         { name: 'Planet Minecraft', url: 'https://www.planetminecraft.com/server/badwolfmc-an-adult-smp-minecraft-server/vote/', id: 'planetmc', type: 'link' },
-        { name: 'TopG', url: 'https://topg.org/minecraft-servers/server-443953', id: 'topg', 'type': 'iframe' },
-        { name: 'MCLike', url: 'https://mclike.com/minecraft-server-180700', id: 'mclike', 'type': 'link' },
-        { name: 'MCList.io', url: 'https://mclist.io/server/66576-play-badwolfmc-com/vote', id: 'mclistio', 'type': 'iframe' },
-        { name: 'Minecraft.buzz', url: 'https://minecraft.buzz/vote/4587', id: 'mcbuzz', 'type': 'link' },
-        { name: 'Minecraft-MP', url: 'https://minecraft-mp.com/server/135406/vote/', id: 'mcmp', 'type': 'iframe' },
-        { name: 'MinecraftServers.org', url: 'https://minecraftservers.org/vote/388761', id: 'mcservers', 'type': 'iframe' },
-        { name: 'Minecraft-Server-List', url: 'https://minecraft-server-list.com/server/368754/vote/', id: 'mcserverlist', 'type': 'link' },
-        { name: 'Minecraft-Server.net', url: 'https://minecraft-server.net/index.php?a=in&u=BadWolfMC', id: 'mcservernet', 'type': 'link' },
-        { name: 'MinecraftList.org', url: 'https://minecraftlist.org/vote/4015', id: 'mclist', 'type': 'iframe' },
-        { name: 'Minecraft-Tracker', url: 'https://minecraft-tracker.com/server/3818/vote/', id: 'mctracker', 'type': 'link' }
+        { name: 'TopG', url: 'https://topg.org/minecraft-servers/server-443953', id: 'topg', type: 'link' },
+        { name: 'MCLike', url: 'https://mclike.com/minecraft-server-180700', id: 'mclike', type: 'link' },
+        { name: 'MCList.io', url: 'https://mclist.io/server/66576-play-badwolfmc-com/vote', id: 'mclistio', type: 'link' },
+        { name: 'Minecraft.buzz', url: 'https://minecraft.buzz/vote/4587', id: 'mcbuzz', type: 'link' },
+        { name: 'Minecraft-MP', url: 'https://minecraft-mp.com/server/135406/vote/', id: 'mcmp', type: 'link' },
+        { name: 'MinecraftServers.org', url: 'https://minecraftservers.org/vote/388761', id: 'mcservers', type: 'link' },
+        { name: 'Minecraft-Server-List', url: 'https://minecraft-server-list.com/server/368754/vote/', id: 'mcserverlist', type: 'link' },
+        { name: 'Minecraft-Server.net', url: 'https://minecraft-server.net/index.php?a=in&u=BadWolfMC', id: 'mcservernet', type: 'link' },
+        { name: 'MinecraftList.org', url: 'https://minecraftlist.org/vote/4015', id: 'mclist', type: 'link' },
+        { name: 'Minecraft-Tracker', url: 'https://minecraft-tracker.com/server/3818/vote/', id: 'mctracker', type: 'link' }
     ];
 
     // Get current EST date string for reset checking
@@ -79,19 +79,30 @@ const MinecraftVotingApp = () => {
     useEffect(() => {
         const savedUsername = localStorage.getItem('minecraft-username');
         const savedVotes = localStorage.getItem('minecraft-votes');
-        const today = new Date().toDateString();
+        const savedTotalVotes = localStorage.getItem('minecraft-total-votes');
+        const currentDateString = getCurrentESTDateString();
 
         if (savedUsername) {
             setUsername(savedUsername);
         }
 
+        if (savedTotalVotes) {
+            setTotalVotes(parseInt(savedTotalVotes, 10) || 0);
+        }
+
         if (savedVotes) {
             const votesData = JSON.parse(savedVotes);
-            if (votesData.date === today) {
+            if (votesData.date === currentDateString) {
                 setVotedSites(votesData.sites);
+                setLastResetDate(currentDateString);
             } else {
+                // New day, reset votes but keep total
                 localStorage.removeItem('minecraft-votes');
+                setVotedSites({});
+                setLastResetDate(currentDateString);
             }
+        } else {
+            setLastResetDate(currentDateString);
         }
     }, []);
 
@@ -131,38 +142,29 @@ const MinecraftVotingApp = () => {
     };
 
     const handleSiteClick = (site) => {
-        setCurrentSite(site);
-        const wasVoted = votedSites[site.id];
-
-        setVotedSites(prev => ({
-            ...prev,
-            [site.id]: true
-        }));
-
-        // Only increment total if this is a new vote
-        if (!wasVoted) {
-            setTotalVotes(prev => prev + 1);
+        if (site.type === 'link') {
+            // Open in new window/tab
+            window.open(site.url, '_blank', 'noopener,noreferrer');
+        } else {
+            // Open in iframe
+            setCurrentSite(site);
         }
     };
 
     const toggleVoteStatus = (siteId, event) => {
         event.stopPropagation(); // Prevent opening the site when clicking the checkbox
-        const currentDateString = getCurrentESTDateString();
-        const isCurrentDay = lastResetDate === currentDateString;
 
         setVotedSites(prev => {
             const newState = { ...prev };
             const wasVoted = newState[siteId];
 
             if (wasVoted) {
+                // Remove vote
                 delete newState[siteId];
-                // Only subtract from total if we're on the same day as the vote
-                if (isCurrentDay) {
-                    setTotalVotes(prevTotal => Math.max(0, prevTotal - 1));
-                }
+                setTotalVotes(prevTotal => Math.max(0, prevTotal - 1));
             } else {
+                // Add vote
                 newState[siteId] = true;
-                // Only add to total if this is a new vote
                 setTotalVotes(prevTotal => prevTotal + 1);
             }
 
@@ -284,10 +286,10 @@ const MinecraftVotingApp = () => {
                                     const isVoted = votedSites[site.id];
 
                                     return (
-                                        <a
+                                        <div
                                             key={site.id}
                                             onClick={() => handleSiteClick(site)}
-                                            className={`relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border transition-all duration-200 hover:scale-105 text-left ${
+                                            className={`relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border transition-all duration-200 hover:scale-105 text-left cursor-pointer ${
                                                 isVoted
                                                     ? 'border-emerald-400/50 bg-emerald-500/20'
                                                     : 'border-white/20 hover:border-white/40'
@@ -315,7 +317,7 @@ const MinecraftVotingApp = () => {
                                             }`}>
                                                 {isVoted ? 'Voted!' : 'Vote Now'}
                                             </div>
-                                        </a>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -325,10 +327,10 @@ const MinecraftVotingApp = () => {
                                 <h3 className="text-lg font-semibold text-white mb-3">How to Vote & Earn Rewards:</h3>
                                 <ol className="text-emerald-200 space-y-2">
                                     <li>1. Enter your Minecraft username in the top bar and copy it</li>
-                                    <li>2. Click on any voting site to open it in the app</li>
+                                    <li>2. Click on any voting site to open it in a new tab</li>
                                     <li>3. Paste your username and complete the captcha</li>
                                     <li>4. Submit your vote for BadWolfMC</li>
-                                    <li>5. Use the home button to return and vote on the next site</li>
+                                    <li>5. Return to this tab and check off completed votes</li>
                                     <li>6. Complete all 12 votes daily to maximize your rewards!</li>
                                 </ol>
                                 <div className="mt-4 p-3 bg-amber-500/20 border border-amber-400/30 rounded-lg">
