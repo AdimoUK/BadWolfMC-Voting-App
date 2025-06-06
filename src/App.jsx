@@ -175,7 +175,7 @@ const MinecraftVotingApp = () => {
     const progressPercentage = (completedVotes / votingSites.length) * 100;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-900 via-emerald-800 to-teal-900 flex flex-col">
+        <div className="min-h-screen bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 flex flex-col">
             {/* Navigation Bar */}
             <nav className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-4">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
