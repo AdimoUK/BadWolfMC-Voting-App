@@ -13,18 +13,18 @@ const MinecraftVotingApp = () => {
     // More info on this is in the README.md file
     // type is either 'link' or 'iframe'
     const votingSites = [
-        { name: 'FindMCServer', url: 'https://findmcserver.com/server/badwolfmc', id: 'findmc', type: 'link' },
-        { name: 'Planet Minecraft', url: 'https://www.planetminecraft.com/server/badwolfmc-an-adult-smp-minecraft-server/vote/', id: 'planetmc', type: 'link' },
-        { name: 'TopG', url: 'https://topg.org/minecraft-servers/server-443953', id: 'topg', type: 'link' },
-        { name: 'MCLike', url: 'https://mclike.com/minecraft-server-180700', id: 'mclike', type: 'link' },
-        { name: 'MCList.io', url: 'https://mclist.io/server/66576-play-badwolfmc-com/vote', id: 'mclistio', type: 'link' },
-        { name: 'Minecraft.buzz', url: 'https://minecraft.buzz/vote/4587', id: 'mcbuzz', type: 'link' },
-        { name: 'Minecraft-MP', url: 'https://minecraft-mp.com/server/135406/vote/', id: 'mcmp', type: 'link' },
-        { name: 'MinecraftServers.org', url: 'https://minecraftservers.org/vote/388761', id: 'mcservers', type: 'link' },
-        { name: 'Minecraft-Server-List', url: 'https://minecraft-server-list.com/server/368754/vote/', id: 'mcserverlist', type: 'link' },
-        { name: 'Minecraft-Server.net', url: 'https://minecraft-server.net/index.php?a=in&u=BadWolfMC', id: 'mcservernet', type: 'link' },
-        { name: 'MinecraftList.org', url: 'https://minecraftlist.org/vote/4015', id: 'mclist', type: 'link' },
-        { name: 'Minecraft-Tracker', url: 'https://minecraft-tracker.com/server/3818/vote/', id: 'mctracker', type: 'link' }
+        { name: 'FindMCServer', url: 'https://link.bwmc.app/findmcweb', id: 'findmc', type: 'link' },
+        { name: 'Planet Minecraft', url: 'https://link.bwmc.app/pmcweb', id: 'planetmc', type: 'link' },
+        { name: 'Top Gaming List', url: 'https://link.bwmc.app/topgweb', id: 'topg', type: 'link' },
+        { name: 'MCLike', url: 'https://link.bwmc.app/likeweb', id: 'mclike', type: 'link' },
+        { name: 'MCList', url: 'https://link.bwmc.app/mclistioweb', id: 'mclistio', type: 'link' },
+        { name: 'Minecraft Buzz', url: 'https://link.bwmc.app/buzzweb', id: 'mcbuzz', type: 'link' },
+        { name: 'Minecraft-MP', url: 'https://link.bwmc.app/mcmpweb', id: 'mcmp', type: 'link' },
+        { name: 'MinecraftServers.org', url: 'https://link.bwmc.app/servorgweb', id: 'mcservers', type: 'link' },
+        { name: 'Minecraft-Server-List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link' },
+        { name: 'Minecraft-Server.net', url: 'https://link.bwmc.app/servnetweb', id: 'mcservernet', type: 'link' },
+        { name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link' },
+        { name: 'Minecraft-Tracker', url: 'https://link.bwmc.app/trackweb', id: 'mctracker', type: 'link' }
     ];
 
     // Get current EST date string for reset checking
