@@ -136,10 +136,11 @@ const MinecraftVotingApp = () => {
         }
     };
 
-    const handleSiteClick = (site) => {
+    const handleSiteClick = (site, event) => {
         if (site.type === 'link') {
             // Open in new window/tab
             window.open(site.url, '_blank', 'noopener,noreferrer');
+            toggleVoteStatus(site.id, event);
         } else {
             // Open in iframe
             setCurrentSite(site);
@@ -161,6 +162,7 @@ const MinecraftVotingApp = () => {
                 // Add vote
                 newState[siteId] = true;
                 setTotalVotes(prevTotal => prevTotal + 1);
+                console.log('toggleVoteStatus - adding vote for ', siteId);
             }
 
             return newState;
@@ -291,7 +293,7 @@ const MinecraftVotingApp = () => {
                                     return (
                                         <div
                                             key={site.id}
-                                            onClick={() => handleSiteClick(site)}
+                                            onClick={(e) => handleSiteClick(site, e)}
                                             className={`relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border transition-all duration-200 hover:scale-105 text-left cursor-pointer ${
                                                 isVoted
                                                     ? 'border-emerald-400/50 bg-emerald-500/20'
