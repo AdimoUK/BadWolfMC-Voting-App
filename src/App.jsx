@@ -140,7 +140,21 @@ const MinecraftVotingApp = () => {
         if (site.type === 'link') {
             // Open in new window/tab
             window.open(site.url, '_blank', 'noopener,noreferrer');
-            toggleVoteStatus(site.id, event);
+            event.stopPropagation();
+            setVotedSites(prev => {
+                const newState = {...prev};
+                const wasVoted = newState[site.id];
+
+                if (wasVoted) {
+                    //do nothing
+                } else {
+                    // Add vote
+                    newState[site.id] = true;
+                    setTotalVotes(prevTotal => prevTotal + 1);
+                }
+
+                return newState;
+            });
         } else {
             // Open in iframe
             setCurrentSite(site);
