@@ -23,8 +23,7 @@ const MinecraftVotingApp = () => {
         {name: 'MinecraftServers.org', url: 'https://link.bwmc.app/servorgweb', id: 'mcservers', type: 'link'},
         {name: 'Minecraft-Server-List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link'},
         {name: 'Minecraft-Server.net', url: 'https://link.bwmc.app/servnetweb', id: 'mcservernet', type: 'link'},
-        {name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link'},
-        {name: 'Minecraft-Tracker', url: 'https://link.bwmc.app/trackweb', id: 'mctracker', type: 'link'}
+        {name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link'}
     ];
 
     // Get current EST date string for reset checking
