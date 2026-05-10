@@ -19,11 +19,12 @@ const MinecraftVotingApp = () => {
         {name: 'MCLike', url: 'https://link.bwmc.app/likeweb', id: 'mclike', type: 'link'},
         {name: 'MCList', url: 'https://link.bwmc.app/mclistioweb', id: 'mclistio', type: 'link'},
         {name: 'Minecraft Buzz', url: 'https://link.bwmc.app/buzzweb', id: 'mcbuzz', type: 'link'},
-        {name: 'Minecraft-MP', url: 'https://link.bwmc.app/mcmpweb', id: 'mcmp', type: 'link'},
+        {name: 'Minecraft Multiplayer', url: 'https://link.bwmc.app/mcmpweb', id: 'mcmp', type: 'link'},
         {name: 'MinecraftServers.org', url: 'https://link.bwmc.app/servorgweb', id: 'mcservers', type: 'link'},
-        {name: 'Minecraft-Server-List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link'},
-        {name: 'Minecraft-Server.net', url: 'https://link.bwmc.app/servnetweb', id: 'mcservernet', type: 'link'},
-        {name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link'}
+        {name: 'Minecraft Server List', url: 'https://link.bwmc.app/listweb', id: 'mcserverlist', type: 'link'},
+        {name: 'MinecraftList.org', url: 'https://link.bwmc.app/list2web', id: 'mclist', type: 'link'},
+        {name: 'Top Minecraft Servers', url: 'https://link.bwmc.app/topmcweb', id: 'topmc', type: 'link'},
+        {name: 'Minecraft Server Hub', url: 'https://link.bwmc.app/mchubweb', id: 'mchub', type: 'link'}
     ];
 
     // Get current EST date string for reset checking
@@ -245,7 +246,7 @@ const MinecraftVotingApp = () => {
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full md:w-auto">
                         <div className="flex items-center gap-2">
                             <Award className="w-5 h-5 text-amber-400"/>
-                            <span className="text-white font-semibold">{completedVotes}/12</span>
+                            <span className="text-white font-semibold">{completedVotes}/{votingSites.length}</span>
                         </div>
                         <div className="w-full sm:w-24 bg-white/20 rounded-full h-2">
                             <div
@@ -272,7 +273,7 @@ const MinecraftVotingApp = () => {
                                 <h1 className="text-4xl font-bold text-white mb-4">Ready to Earn Your Loyalty
                                     Points?</h1>
                                 <p className="text-emerald-200 text-lg mb-6">
-                                    Vote for BadWolfMC on all 12 sites to earn valuable in-game rewards obtainable using
+                                    Vote for BadWolfMC on all {votingSites.length} sites to earn valuable in-game rewards obtainable using
                                     loyalty points!
                                 </p>
 
@@ -354,7 +355,7 @@ const MinecraftVotingApp = () => {
                                         account
                                     </li>
                                     <li>5. Return to this tab and check off completed votes</li>
-                                    <li>6. Complete all 12 votes daily to maximize your rewards!</li>
+                                    <li>6. Complete all {votingSites.length} votes daily to maximize your rewards!</li>
                                 </ol>
                                 <div className="mt-4 p-3 bg-red-500/20 border border-red-400/30 rounded-lg">
                                     <p className="text-red-200 text-sm">
